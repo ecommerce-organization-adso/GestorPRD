@@ -24,7 +24,6 @@
     "@angular/platform-browser": "^17.0.0",
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
-    "socks": "^2.8.0",
     "@ant-design/icons-angular": "^17.0.0",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@popperjs/core": "^2.11.8",
@@ -33,6 +32,7 @@
     "ng-apexcharts": "^1.8.0",
     "ngx-scrollbar": "^13.0.3",
     "rxjs": "~7.8.1",
+    "socks": "^2.8.0",
     "tslib": "^2.6.2",
     "zone.js": "~0.14.4"
   },
@@ -49,6 +49,7 @@
     "@types/node": "^20.12.7",
     "@typescript-eslint/eslint-plugin": "7.7.1",
     "@typescript-eslint/parser": "7.7.1",
+    "angular-cli-ghpages": "^2.0.1",
     "eslint": "^8.56.0",
     "jasmine-core": "~5.1.2",
     "karma": "~6.4.3",
