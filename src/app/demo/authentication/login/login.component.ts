@@ -22,6 +22,7 @@ export default class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
   rememberMe: boolean = false;
+  errorMessage: string = ''; // Variable para almacenar el mensaje de error
 
   SignInOptions = [
     {
@@ -47,17 +48,19 @@ export default class LoginComponent implements OnInit {
   handleClick(): void {
     this.apirestService.getUsuarios().subscribe(
       (response: any[]) => {
-        console.log(this.email);
+        // Validar tanto el nombre de usuario como la contraseña
         const userExists = response.some((user: any) => user.username === this.email && user.password === this.password);
+        
         if (userExists) {
           console.log('¡Usuario logueado!', response);
-          // this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard/default']); // Redirigir a 'dashboard/default' si es correcto
         } else {
-          console.log('El usuario no existe.');
+          this.errorMessage = 'El usuario no existe o la contraseña es incorrecta.';
         }
       },
       error => {
         console.error('Error al consultar la API', error);
+        this.errorMessage = 'Error al consultar la API';
       }
     );
   }
