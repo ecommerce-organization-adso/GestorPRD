@@ -1,46 +1,28 @@
-// angular import
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router,RouterModule  } from '@angular/router';
 import { ApirestService } from '../../../servicios/apirest/apirest.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common'; // Importa CommonModule
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [RouterModule],
   templateUrl: './login.component.html',
+  standalone: true,
+  imports: [ 
+    FormsModule,
+    RouterModule,
+    CommonModule, // Asegúrate de importar CommonModule
+  ],
   styleUrls: ['./login.component.scss']
 })
+
+
 export default class LoginComponent implements OnInit {
-
   username: string = '';
+  email: string = '';
+  password: string = '';
+  rememberMe: boolean = false;
 
-
-  constructor(private apirestService: ApirestService) {}
-
-  ngOnInit(): void {
-    console.log('SIIIIIIIIIIIIIIIIUUUUUUUUUUUUUUU');
-  }
-
-  handleClick(): void {
-    this.apirestService.getUsuarios().subscribe(
-      response => {
-        if (response) {
-          console.log('!Usuario logueado!!!!!!!!!!!!!!!!!!!!',response);
-        } else {
-          console.log('El usuario no existe.');
-        }
-      },
-      error => {
-        console.error('Error al consultar la API', error);
-      }
-    );
-  }
-
-
-
-
-
-  // public method
   SignInOptions = [
     {
       image: 'assets/images/authentication/google.svg',
@@ -55,4 +37,35 @@ export default class LoginComponent implements OnInit {
       name: 'Facebook'
     }
   ];
+
+  constructor(private apirestService: ApirestService, private router: Router) {}
+
+  ngOnInit(): void {
+    console.log('Componente de login inicializado');
+  }
+
+  handleClick(): void {
+    this.apirestService.getUsuarios().subscribe(
+      (response: any[]) => {
+        console.log(this.email);
+        const userExists = response.some((user: any) => user.username === this.email && user.password === this.password);
+        if (userExists) {
+          console.log('¡Usuario logueado!', response);
+          // this.router.navigate(['/dashboard']);
+        } else {
+          console.log('El usuario no existe.');
+        }
+      },
+      error => {
+        console.error('Error al consultar la API', error);
+      }
+    );
+  }
+
+  handleFormSubmit(): void {
+    console.log('Email:', this.email);
+    console.log('Password:', this.password);
+    console.log('Remember Me:', this.rememberMe);
+    this.handleClick();
+  }
 }
