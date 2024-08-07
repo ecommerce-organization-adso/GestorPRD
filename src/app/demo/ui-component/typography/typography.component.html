@@ -1,0 +1,47 @@
+<!-- [ Main Content ] start -->
+<div class="row">
+  <!-- [ Typography ] start -->
+  <div class="col-sm-12">
+    Crear
+  </div>
+
+  <div class="col-md-6">
+    <form (ngSubmit)="onSubmit()" #productForm="ngForm">
+      <div class="form-group">
+        <label for="nombre">Nombre de la categorias</label>
+        <input type="text" id="nombre" name="nombre" required class="form-control" [(ngModel)]="categoria.category_name">
+      </div> 
+       <div class="form-footer">
+        <button class="btn btn-primary" type="submit">Crear Categoria</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-md-2 col-lg-4" style="height: 100px;">
+    <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [plotOptions]="chartOptions.plotOptions"
+    [xaxis]="chartOptions.xaxis" [colors]="chartOptions.colors" [stroke]="chartOptions.stroke"
+    [yaxis]="chartOptions.yaxis" [grid]="chartOptions.grid" [tooltip]="chartOptions.tooltip"></apx-chart>
+    
+  </div>
+  {{this.message}}
+
+  <div class="col-md-6 col-lg-4">
+    
+    <app-category-table></app-category-table> <!-- Aquí estás incluyendo el componente hijo -->
+
+  </div>
+
+
+  <div class="col-md-6 col-lg-4">
+    
+  </div>
+ 
+  <div class="col-md-6">
+
+  </div>
+  <div class="col-md-6">
+
+  </div>
+  <!-- [ Typography ] end -->
+</div>
+<!-- [ Main Content ] end -->

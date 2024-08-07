@@ -1,0 +1,27 @@
+<!-- category-table.component.html -->
+<div *ngIf="productos.length > 0; else noData">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre del producto</th>
+          <th>Descripción</th>
+          <th>Imagen</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of productos">
+          <td>{{ producto.id }}</td>
+          <td>{{ producto.name }}</td>
+          <td>{{ producto.description }}</td>
+          <td>{{ producto.product_image }}</td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noData>
+    <p>No se encontraron categorías.</p>
+  </ng-template>
+  
