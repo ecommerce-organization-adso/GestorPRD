@@ -18,6 +18,7 @@ import { CommonModule } from '@angular/common'; // Importa CommonModule
 
 
 export default class LoginComponent implements OnInit {
+  id: boolean = false;
   username: string = '';
   email: string = '';
   password: string = '';
@@ -51,9 +52,15 @@ export default class LoginComponent implements OnInit {
         // Validar tanto el nombre de usuario como la contraseña
         const userExists = response.some((user: any) => user.username === this.email && user.password === this.password);
 
+        const user = response.find((user: any) => user.username === this.email && user.password === this.password);
+
         if (userExists) {
           console.log('¡Usuario logueado!', response);
+           // Guardar el ID del usuario en localStorage
+          localStorage.setItem('userId',user.id);
+
           this.router.navigate(['/dashboard/default']); // Redirigir a 'dashboard/default' si es correcto
+
         } else {
           this.errorMessage = 'El usuario no existe o la contraseña es incorrecta.';
         }
