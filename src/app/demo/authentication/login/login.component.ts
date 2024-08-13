@@ -3,6 +3,7 @@ import { Router,RouterModule  } from '@angular/router';
 import { ApirestService } from '../../../servicios/apirest/apirest.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Importa CommonModule
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ import { CommonModule } from '@angular/common'; // Importa CommonModule
 
 
 export default class LoginComponent implements OnInit {
+  id: boolean = false;
   username: string = '';
   email: string = '';
   password: string = '';
@@ -39,30 +41,20 @@ export default class LoginComponent implements OnInit {
     }
   ];
 
-  constructor(private apirestService: ApirestService, private router: Router) {}
+  constructor(private apirestService: ApirestService, private router: Router,private authService: AuthService) {}
 
   ngOnInit(): void {
     console.log('Componente de login inicializado');
   }
 
   handleClick(): void {
-    this.apirestService.getUsuarios().subscribe(
-      (response: any[]) => {
-        // Validar tanto el nombre de usuario como la contraseña
-        const userExists = response.some((user: any) => user.username === this.email && user.password === this.password);
-
-        if (userExists) {
-          console.log('¡Usuario logueado!', response);
-          this.router.navigate(['/dashboard/default']); // Redirigir a 'dashboard/default' si es correcto
-        } else {
-          this.errorMessage = 'El usuario no existe o la contraseña es incorrecta.';
-        }
-      },
-      error => {
-        console.error('Error al consultar la API', error);
-        this.errorMessage = 'Error al consultar la API';
+    this.authService.login(this.email, this.password).subscribe((isLoggedIn: boolean) => {
+      if (isLoggedIn) {
+        console.log('¡Usuario logueado!');
+      } else {
+        this.errorMessage = 'El usuario no existe o la contraseña es incorrecta.';
       }
-    );
+    });
   }
 
   handleFormSubmit(): void {
