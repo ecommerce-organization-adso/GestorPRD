@@ -6,38 +6,37 @@
   </div>
 
   <div class="col-md-6">
-    <form>
+    <form (ngSubmit)="onSubmit()" #productForm="ngForm">
       <div class="form-group">
-        <label for="exampleInputEmail1">Nombre de la categoria (sin números)</label>
-        <input type="text" id="nombre" name="nombre" required class="form-control">
-        <small id="emailHelp" class="form-text text-muted">Su dirección de correo se encuentra protegida</small>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Descripción</label>
-        <input class="form-control" type="text" id="descripcion" name="descripcion" required>
-      </div>
-
-      <div class="form-group">
-        <label for="exampleInputPassword1">Estado</label>
-        <select id="estado" name="estado" required class="custom-select">
-          <option value="1">Activo</option>
-          <option value="2">Inactivo</option>
-        </select>
+        <label for="nombre">Nombre de la categorias</label>
+        <input type="text" id="nombre" name="nombre" required class="form-control"
+          [(ngModel)]="categoria.category_name">
       </div>
       <div class="form-footer">
         <button class="btn btn-primary" type="submit">Crear Categoria</button>
-        <small id="emailHelp" class="form-text text-muted">Asegurese de ingresar los datos correctamente</small>
       </div>
-    </form><br>
+    </form>
   </div>
-  <div class="col-md-6 col-lg-4">
+
+  <div class="col-md-2 col-lg-4" style="height: 100px;">
     <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [plotOptions]="chartOptions.plotOptions"
       [xaxis]="chartOptions.xaxis" [colors]="chartOptions.colors" [stroke]="chartOptions.stroke"
       [yaxis]="chartOptions.yaxis" [grid]="chartOptions.grid" [tooltip]="chartOptions.tooltip"></apx-chart>
+
   </div>
+  {{this.message}}
+
+  <div class="col-md-6 col-lg-4">
+
+    <app-category-table></app-category-table> <!-- Aquí estás incluyendo el componente hijo -->
+
+  </div>
+
+
   <div class="col-md-6 col-lg-4">
 
   </div>
+
   <div class="col-md-6">
 
   </div>

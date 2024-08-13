@@ -1,7 +1,10 @@
 // angular import
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+<<<<<<< HEAD
 // import { ApirestService } from '.apirest/apirest.service';
+=======
+>>>>>>> origin/Edwin
 
 // Project import
 import { AdminComponent } from './theme/layouts/admin-layout/admin-layout.component';
