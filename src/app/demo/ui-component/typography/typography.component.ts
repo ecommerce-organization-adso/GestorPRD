@@ -1,8 +1,11 @@
 // angular import
 import { Component,ViewChild } from '@angular/core';
+import { ApirestService } from 'src/app/servicios/apirest/apirest.service';
 
 // project import
 import { SharedModule } from 'src/app/theme/shared/shared.module';
+import { CategoryTableComponent } from './category-table/category-table.component';
+
 
 // third party
 import {
@@ -34,7 +37,7 @@ export type ChartOptions = {
 @Component({
   selector: 'app-typography',
   standalone: true,
-  imports: [SharedModule,NgApexchartsModule],
+  imports: [SharedModule,NgApexchartsModule,CategoryTableComponent],
   templateUrl: './typography.component.html',
   styleUrls: ['./typography.component.scss']
 })
@@ -42,12 +45,37 @@ export type ChartOptions = {
 export default class TypographyComponent {
 
 
+  categoria = {
+    category_name: '',
+    parent_category: '1',
+  };
+  message: string;
+
+
+  onSubmit() {
+    // Cuando el formulario se envía, el objeto producto contiene los datos del formulario
+    this.apiService.crearCategorias(this.categoria).subscribe(
+      response => {
+        this.message = ('Categoria creada exitosamente');
+
+        // Puedes agregar lógica adicional aquí, como redirigir al usuario o mostrar un mensaje de éxito
+      },
+      error => {
+
+        console.error('Error al crear el producto', error);
+        // Maneja el error, por ejemplo, mostrando un mensaje de error al usuario
+      }
+    );
+  }
+
  // public props
  @ViewChild('chart') chart!: ChartComponent;
  chartOptions!: Partial<ChartOptions>;
 
  //  constructor
- constructor() {
+ constructor(private apiService: ApirestService) {
+
+
    this.chartOptions = {
      chart: {
        type: 'line',

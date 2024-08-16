@@ -1,5 +1,4 @@
-<div class="card">
-  <!-- @if (showHeader) {
+<!-- @if (showHeader) {
   <div class="card-header d-flex align-items-center justify-content-between" [ngClass]="headerClass">
     <div>
       <h5>{{ cardTitle }}</h5>
@@ -14,31 +13,34 @@
   </div>
   } -->
 
-  <form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Nombre del producto (sin números)</label>
-      <input type="text" id="nombre" name="nombre" required class="form-control">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Descripción</label>
-      <input class="form-control" type="text" id="descripcion" name="descripcion" required>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Valor</label>
-      <input class="form-control" type="number" id="valor" name="valor" required>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Estado</label>
-      <select id="estado" name="estado" required class="custom-select">
-        <option value="1">Activo</option>
-        <option value="2">Inactivo</option>
-      </select>
-    </div>
-    <div class="form-footer">
-      <button class="btn btn-primary" type="submit">Crear Producto</button>
-    </div>
-  </form><br>
+<form (ngSubmit)="onSubmit()" #productForm="ngForm">
+  <div class="form-group">
+    <label for="nombre">Nombre del producto (sin números)</label>
+    <input type="text" id="nombre" name="nombre" required class="form-control" [(ngModel)]="producto.name">
+  </div>
+  <div class="form-group">
+    <label for="descripcion">Descripción</label>
+    <input class="form-control" type="text" id="descripcion" name="descripcion" required
+      [(ngModel)]="producto.description">
+  </div>
 
+  <div class="form-group">
+    <label for="estado">Categoria</label>
+    <select id="estado" name="estado" required class="custom-select" [(ngModel)]="producto.category_id">
+      <option value="1">Activo</option>
+      <option value="2">Inactivo</option>
+    </select>
+  </div>
+  <div class="form-footer">
+    <button class="btn btn-primary" type="submit">Crear Producto</button>
+  </div>
+</form>
+
+{{this.message}}
+
+
+<div class="col-md-6 col-lg-4">
+
+  <app-product-table></app-product-table> <!-- Aquí estás incluyendo el componente hijo -->
 
 </div>

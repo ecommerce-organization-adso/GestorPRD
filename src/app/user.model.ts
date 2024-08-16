@@ -1,5 +1,4 @@
 export interface User {
-  username: any;
-
+  username: string;
   // agrega otras propiedades necesarias
 }
