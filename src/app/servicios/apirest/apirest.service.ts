@@ -13,9 +13,10 @@ export class ApirestService {
 
   constructor(private http: HttpClient) { }
 
-  getUsuarios(): Observable<any> { // Cambiamos el tipo de retorno a 'any'
+  getUsuarios() {
     return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/site_users/');
   }
+
 
   getProductos(): Observable<any> {
     return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/products/');
@@ -29,6 +30,10 @@ export class ApirestService {
     return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/product_categories/', nuevaCategoria);
   }
 
+  eliminarCategoria(id: any): Observable<any> {
+    return this.http.delete(`http://127.0.0.1:8000/product_categories/`,id);
+  }
+
   obtenerCategoria(): Observable<any> {
     return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/product_categories/');
   }
@@ -38,11 +43,11 @@ export class ApirestService {
   }
 
   actualizarProducto(producto: any): Observable<any> {
-    return this.http.put(`http://127.0.0.1:8000/api_drf/v1/producto/${producto.id}/`, producto);
+    return this.http.put(`https://api-ecommerce-01.azurewebsites.net/api/products/`,producto);
   }
 
   eliminarProducto(id: any): Observable<any> {
-    return this.http.delete(`http://127.0.0.1:8000/api_drf/v1/producto/${id}/`);
+    return this.http.delete(`https://api-ecommerce-01.azurewebsites.net/api/products/${id}`);
   }
 
   deleteEstudios(id: any): Observable<any> {

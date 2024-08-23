@@ -6,6 +6,7 @@ import { ApirestService } from '../../../servicios/apirest/apirest.service';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +17,7 @@ import { CommonModule } from '@angular/common';
 })
 export default class RegisterComponent {
   registerForm: FormGroup;
+
 
   SignUpOptions = [
     {
@@ -45,15 +47,27 @@ export default class RegisterComponent {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      this.ApirestService.registerUser(this.registerForm.value).subscribe(
-        response => {
-          console.log('User registered successfully', response);
-          this.router.navigate(['/login']);  // Redirige al usuario a la página de inicio de sesión después del registro
-        },
-        error => {
-          console.error('Error registering user', error);
+      const saltRounds = 10;
+      const plainTextPassword = this.registerForm.value.password; // Debes usar el valor del campo `password`, no `email`.
+
+      bcrypt.hash(plainTextPassword, saltRounds, (err, hash) => {
+        if (err) {
+          console.error('Error encriptando la contraseña:', err);
+          return;
         }
-      );
+        // Almacena el hash en tu base de datos
+        this.registerForm.value.password = hash;
+
+        this.ApirestService.registerUser(this.registerForm.value).subscribe(
+          response => {
+            console.log('User registered successfully', response);
+            this.router.navigate(['/login']);  // Redirige al usuario a la página de inicio de sesión después del registro
+          },
+          error => {
+            console.error('Error registering user', error);
+          }
+        );
+      });
     }
   }
 }
