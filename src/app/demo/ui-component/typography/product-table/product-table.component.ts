@@ -11,28 +11,43 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductTableComponent {
 
-
-  constructor(private apiService: ApirestService,public apirestservice: ApirestService) {}
-
   productos: any[] = [];
+
+  constructor(private apiService: ApirestService) {}
 
   ngOnInit(): void {
     this.obtenerProductos();
   }
 
-
   obtenerProductos() {
-    this.apirestservice.getProductos().subscribe(
+    this.apiService.getProductos().subscribe(
       (responseP: any) => {
         this.productos = responseP;
         console.log(this.productos);
       },
       (error) => {
-        console.error('Error al obtener categorias:', error);
+        console.error('Error al obtener productos:', error);
       }
     );
   }
 
+  editarProducto(producto: any): void {
+    // Aquí podrías abrir un modal o redirigir a un formulario de edición
+    console.log('Producto a editar:', producto);
+    // Implementa la lógica necesaria para editar el producto
+  }
 
-
+  eliminarProducto(productoId: number): void {
+    if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+      this.apiService.eliminarProducto(productoId).subscribe(
+        () => {
+          this.productos = this.productos.filter(producto => producto.id !== productoId);
+          console.log('Producto eliminado con éxito');
+        },
+        (error) => {
+          console.error('Error al eliminar el producto:', error);
+        }
+      );
+    }
+  }
 }

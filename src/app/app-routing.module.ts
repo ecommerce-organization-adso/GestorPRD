@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Project import
+
 import { AdminComponent } from './theme/layouts/admin-layout/admin-layout.component';
 import { GuestComponent } from './theme/layouts/guest/guest.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -20,8 +21,17 @@ const routes: Routes = [
       },
       {
         path: 'typography',
-        loadComponent: () => import('./demo/ui-component/typography/typography.component')
+        loadComponent: () => import('./demo/ui-component/typography/typography.component'),
+        canActivate: [AuthGuard], // Aplica el guard aquí
+
       },
+      {
+        path: 'forgot-password',
+        loadComponent: () => import('./demo/forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent)
+      },
+
+
+
       {
         path: 'color',
         loadComponent: () => import('./demo/ui-component/ui-color/ui-color.component')

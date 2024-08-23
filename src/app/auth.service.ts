@@ -3,41 +3,56 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ApirestService } from './servicios/apirest/apirest.service';
-
+import * as bcrypt from 'bcryptjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
-  private isAuthenticated = false;
 
+
+
+export class AuthService {
+
+
+  private isAuthenticated = false;
   constructor(private apirestService: ApirestService, private router: Router) {}
 
-  login(email: string, password: string): Observable<boolean> {
-    return this.apirestService.getUsuarios().pipe(
-      map((response: any[]) => {
-        const user = response.find(
-          (user: any) => user.username === email && user.password === password
-        );
 
-        if (user) {
-          localStorage.setItem('userId', user.id);
-          this.router.navigate(['/dashboard/default']); // Redirigir a 'dashboard/default' si es correcto
-          this.isAuthenticated = true;
-          return true;
-        } else {
-          return false;
-        }
-      }),
-      catchError(error => {
-        console.error('Error al consultar la API', error);
-        return of(false);
-      })
-    );
-  }
+      //FUNCION
+      login(email: string, password: string): Observable<boolean> {
+        return this.apirestService.getUsuarios().pipe(
+          map((response: any[]) => {
+            const user = response.find((user: any) => user.username === email);
+            if (user) {
+              // Usar bcrypt.compareSync para evitar problemas de retorno
+              const isMatch = bcrypt.compareSync(password, user.password);
+              if (isMatch) {
+                // Si la contraseña es correcta, guarda el ID del usuario y redirige
+                // localStorage.setItem('userId', user.id);
+                this.isAuthenticated = true;
+                this.router.navigate(['/dashboard/default']);
+                return true;
+              } else {
+                // Contraseña incorrecta
+                console.log('Contraseña incorrecta');
+                return false;
+              }
+            } else {
+              // Usuario no encontrado
+              console.log('Usuario no encontrado');
+              return false;
+            }
+          }),
+          catchError(error => {
+            console.error('Error al consultar la API', error);
+            return of(false);
+          })
+        );
+      }
 
   logout(): void {
-    localStorage.removeItem('userId');
+/*     localStorage.removeItem('userId');
+ */
     this.isAuthenticated = false;
     this.router.navigate(['/login']);
   }
