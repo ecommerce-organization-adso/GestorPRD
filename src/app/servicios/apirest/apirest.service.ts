@@ -13,10 +13,13 @@ export class ApirestService {
 
   constructor(private http: HttpClient) { }
 
-  getUsuarios() {
-    return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/site_users/');
-  }
+  // getUsuarios() {
+  //   return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/site_users/');
+  // }
 
+  getUsuarios() {
+    return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/usuarios/');
+  }
 
   getProductos(): Observable<any> {
     return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/products/');
@@ -54,12 +57,20 @@ export class ApirestService {
     return this.http.delete(`http://localhost:8000/api_drf/v1/estudios/${id}/`);
   }
 
+  // registerUser(user: any) {
+  //   return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/site_users/', user);
+  // }
   registerUser(user: any) {
-    return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/site_users/', user);
+    return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/usuarios/', user);
   }
 
-  validarUsuario(username: string, password: string) {
-    return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/site_users/', { username, password });
+  // validarUsuario(username: string, password: string) {
+  //   return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/site_users/', { username, password });
+  //   // Ajusta la URL y los datos según la API de tu backend
+  // }
+
+   validarUsuario(username: string, password: string) {
+    return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/usuarios/', { username, password });
     // Ajusta la URL y los datos según la API de tu backend
   }
 }

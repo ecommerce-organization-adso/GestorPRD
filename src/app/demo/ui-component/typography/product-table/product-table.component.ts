@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { ApirestService } from 'src/app/servicios/apirest/apirest.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './product-table.component.html',
   styleUrl: './product-table.component.scss'
 })
@@ -31,12 +32,38 @@ export class ProductTableComponent {
     );
   }
 
-  editarProducto(producto: any): void {
-    // Aquí podrías abrir un modal o redirigir a un formulario de edición
-    console.log('Producto a editar:', producto);
-    // Implementa la lógica necesaria para editar el producto
-  }
+  // editarProducto(producto: any): void {
+  //   // Aquí podrías abrir un modal o redirigir a un formulario de edición
+  //   console.log('Producto a editar:', producto);
+  //   // Implementa la lógica necesaria para editar el producto
+  // }
 
+
+  selectedProduct: any;
+  isModalOpen = false;
+  
+  openModal(producto: any) {
+    this.selectedProduct = { ...producto }; // Clonamos el producto para evitar modificarlo directamente
+    this.isModalOpen = true;
+  }
+  
+  closeModal() {
+    this.isModalOpen = false;
+  }
+  
+  actualizarProducto(producto: any) {
+    this.apiService.actualizarProducto(producto).subscribe({
+      next: (response) => {
+        console.log('Producto actualizado con éxito', response);
+        this.isModalOpen = false;
+        // Aquí actualizas la lista de productos si es necesario
+      },
+      error: (error) => {
+        console.error('Error al actualizar el producto', error);
+      }
+    });
+  }
+  
   eliminarProducto(productoId: number): void {
     if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
       this.apiService.eliminarProducto(productoId).subscribe(
