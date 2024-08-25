@@ -42,10 +42,11 @@ export class ProductTableComponent {
   selectedProduct: any;
   isModalOpen = false;
   
-  openModal(producto: any) {
-    this.selectedProduct = { ...producto }; // Clonamos el producto para evitar modificarlo directamente
-    this.isModalOpen = true;
-  }
+ openModal(producto: any) {
+  this.selectedProduct = { ...producto };
+  this.isModalOpen = true;
+  console.log('Modal abierto:', this.isModalOpen); // Debería mostrar "true"
+}
   
   closeModal() {
     this.isModalOpen = false;

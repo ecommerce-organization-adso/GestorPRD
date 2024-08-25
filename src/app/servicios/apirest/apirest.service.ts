@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ApirestService {
 
-  private apiUrl = 'https://api-ecommerce-01.azurewebsites.net/api/product_categories/';
+  private apiUrl = 'https://api-ecommerce-01.azurewebsites.net/api/categorias/';
 
   constructor(private http: HttpClient) { }
 
@@ -21,36 +21,63 @@ export class ApirestService {
     return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/usuarios/');
   }
 
+  // getProductos(): Observable<any> {
+  //   return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/products/');
+  // }
   getProductos(): Observable<any> {
-    return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/products/');
+    return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/productos/');
   }
+
+  // crearProducto(nuevoProducto: any): Observable<any> {
+  //   return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/products/', nuevoProducto);
+  // }
 
   crearProducto(nuevoProducto: any): Observable<any> {
-    return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/products/', nuevoProducto);
+    return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/productos/', nuevoProducto);
   }
 
-  crearCategorias(nuevaCategoria: any): Observable<any> {
-    return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/product_categories/', nuevaCategoria);
+  // crearCategorias(nuevaCategoria: any): Observable<any> {
+  //   return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/product_categories/', nuevaCategoria);
+  // }
+
+    crearCategorias(nuevaCategoria: any): Observable<any> {
+    return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/categorias/', nuevaCategoria);
   }
+
+
+  // eliminarCategoria(id: any): Observable<any> {
+  //   return this.http.delete(`http://127.0.0.1:8000/product_categories/`,id);
+  // }
 
   eliminarCategoria(id: any): Observable<any> {
-    return this.http.delete(`http://127.0.0.1:8000/product_categories/`,id);
+    return this.http.delete(`http://127.0.0.1:8000/categorias/`,id);
   }
+  // obtenerCategoria(): Observable<any> {
+  //   return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/product_categories/');
+  // }
 
   obtenerCategoria(): Observable<any> {
-    return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/product_categories/');
+    return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/categorias/');
   }
 
   APICrearCategoria(nuevaCategoria: any): Observable<any> {
     return this.http.post(this.apiUrl, nuevaCategoria);
   }
 
+  // actualizarProducto(producto: any): Observable<any> {
+  //   return this.http.put(`https://api-ecommerce-01.azurewebsites.net/api/products/`,producto);
+  // }
+
   actualizarProducto(producto: any): Observable<any> {
-    return this.http.put(`https://api-ecommerce-01.azurewebsites.net/api/products/`,producto);
+    return this.http.put(`https://api-ecommerce-01.azurewebsites.net/api/productos/`,producto);
   }
 
+  // eliminarProducto(id: any): Observable<any> {
+  //   return this.http.delete(`https://api-ecommerce-01.azurewebsites.net/api/products/${id}`);
+  // }
+
   eliminarProducto(id: any): Observable<any> {
-    return this.http.delete(`https://api-ecommerce-01.azurewebsites.net/api/products/${id}`);
+    return this.http.delete(`https://api-ecommerce-01.azurewebsites.net/api/productos/${id}`);
   }
 
   deleteEstudios(id: any): Observable<any> {
