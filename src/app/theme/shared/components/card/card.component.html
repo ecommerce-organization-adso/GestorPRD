@@ -15,13 +15,16 @@
 
 <form (ngSubmit)="onSubmit()" #productForm="ngForm">
   <div class="form-group">
+    <label for="categoria">Categoria</label>
+    <input class="form-control" type="text" id="categoria" name="categoria" required [(ngModel)]="producto.category_id">
+  </div>
+  <div class="form-group">
     <label for="nombre">Nombre del producto (sin números)</label>
     <input type="text" id="nombre" name="nombre" required class="form-control" [(ngModel)]="producto.name">
   </div>
   <div class="form-group">
-    <label for="descripcion">Descripción</label>
-    <input class="form-control" type="text" id="descripcion" name="descripcion" required
-      [(ngModel)]="producto.description">
+    <label for="cantidad">Cantidad</label>
+    <input class="form-control" type="text" id="cantidad" name="cantidad" required [(ngModel)]="producto.description">
   </div>
 
   <div class="form-group">
