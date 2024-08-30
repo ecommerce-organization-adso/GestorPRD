@@ -53,7 +53,7 @@ export class ProductTableComponent {
   }
   
   actualizarProducto(producto: any) {
-    this.apiService.actualizarProducto(producto).subscribe({
+    this.apiService.ServiceActualizarProducto(producto).subscribe({
       next: (response) => {
         console.log('Producto actualizado con éxito', response);
         this.isModalOpen = false;

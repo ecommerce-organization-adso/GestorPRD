@@ -64,12 +64,15 @@ export class ApirestService {
     return this.http.post(this.apiUrl, nuevaCategoria);
   }
 
+  ServiceActualizarCategoria(categoria: any): Observable<any> {
+    return this.http.put(`https://api-ecommerce-01.azurewebsites.net/api/productos/${categoria.id}/`,categoria);
+  }
   // actualizarProducto(producto: any): Observable<any> {
   //   return this.http.put(`https://api-ecommerce-01.azurewebsites.net/api/products/`,producto);
   // }
 
-  actualizarProducto(producto: any): Observable<any> {
-    return this.http.put(`https://api-ecommerce-01.azurewebsites.net/api/productos/`,producto);
+  ServiceActualizarProducto(producto: any): Observable<any> {
+    return this.http.put(`https://api-ecommerce-01.azurewebsites.net/api/productos/${producto.id}/`,producto);
   }
 
   // eliminarProducto(id: any): Observable<any> {
