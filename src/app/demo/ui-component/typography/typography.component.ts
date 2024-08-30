@@ -47,7 +47,7 @@ export default class TypographyComponent {
 
   categoria = {
     category_name: '',
-    parent_category: '1',
+    description_category: '',
   };
   message: string;
 
