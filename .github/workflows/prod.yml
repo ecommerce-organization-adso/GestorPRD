@@ -27,7 +27,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: mlatino29/tienda-cliente-angular-01:latest
+          tags: mlatino29/tienda-admin-angular-01:latest
 
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
@@ -35,7 +35,7 @@ jobs:
       - name: Deploy to VM
         run: |
           sshpass -p 'azureMachine02' ssh -o StrictHostKeyChecking=no azuremachine@20.84.91.157 << 'EOF'
-            docker pull mlatino29/tienda-cliente-angular-01:latest
+            docker pull mlatino29/tienda-admin-angular-01:latest
             docker stop app-cliente-angular-01 || true
             docker rm app-cliente-angular-01 || true
             docker run -d --name app-cliente-angular-01 -p 4200:4200 mlatino29/tienda-cliente-angular-01:latest
