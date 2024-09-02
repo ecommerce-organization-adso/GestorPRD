@@ -1,43 +1,40 @@
-name: Prod deploy
+name: Build, Push, and Deploy Docker Image
 
-# Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches:
-      - master
-  pull_request:
-    types:
-      - closed
-    branches:
-      - master
+      - develop-miguellatino
 
 jobs:
-  if_merged:
-    if: github.event.pull_request.merged == true
-    name: 🎉 Deploy
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🚚 Get latest code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Use Node.js 18
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-      - name: 🔨 Build Project
+      - name: Login to Docker Hub
+        run: echo "iU4O1doQ2HE1Ms" | docker login -u "mlatino29" --password-stdin
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: mlatino29/tienda-cliente-angular-01:latest
+
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: Deploy to VM
         run: |
-          npm i --legacy-peer-deps
-          npm run build-prod
-      - name: 📂 Deploy to Server
-        uses: easingthemes/ssh-deploy@main
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          # ARGS: "-rltgoDzvO --delete"
-          SOURCE: 'dist/'
-          REMOTE_HOST: 192.34.62.123
-          REMOTE_USER: mantis
-          TARGET: public_html/angular/free
-          EXCLUDE: '/node_modules/'
+          sshpass -p 'azureMachine02' ssh -o StrictHostKeyChecking=no azuremachine@20.84.91.157 << 'EOF'
+            docker pull mlatino29/tienda-cliente-angular-01:latest
+            docker stop app-cliente-angular-01 || true
+            docker rm app-cliente-angular-01 || true
+            docker run -d --name app-cliente-angular-01 mlatino29/tienda-cliente-angular-01:latest
+          EOF
+
