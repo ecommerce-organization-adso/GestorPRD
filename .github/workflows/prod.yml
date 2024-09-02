@@ -35,6 +35,6 @@ jobs:
             docker pull mlatino29/tienda-cliente-angular-01:latest
             docker stop app-cliente-angular-01 || true
             docker rm app-cliente-angular-01 || true
-            docker run -d --name app-cliente-angular-01 mlatino29/tienda-cliente-angular-01:latest
+            docker run -d --name app-cliente-angular-01 -p 4200:4200 mlatino29/tienda-cliente-angular-01:latest
           EOF
 
