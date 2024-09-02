@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - develop-miguellatino
+  pull_request:
+    branches:
+      - develop-miguellatino
 
 jobs:
   build-and-deploy:
