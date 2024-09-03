@@ -16,12 +16,17 @@ export class CardComponent {
   producto = {
     name: '',
     description: '',
-    category_id: '',
+    price: '',
+    quantity: '',
+    status: '',
+    // image: '',
+    category: '',
   };
   message: string;
   constructor(private apiService: ApirestService) {}
 
   onSubmit() {
+    console.log(this.producto)
     // Cuando el formulario se envía, el objeto producto contiene los datos del formulario
     this.apiService.crearProducto(this.producto).subscribe(
       response => {
