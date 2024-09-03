@@ -69,7 +69,7 @@ export class ApirestService {
   }
 
   ServiceActualizarCategoria(categoria: any): Observable<any> {
-    return this.http.put(`https://api-ecommerce-01.azurewebsites.net/api/productos/${categoria.id}/`,categoria);
+    return this.http.put(`https://api-ecommerce-01.azurewebsites.net/api/categorias/${categoria.id}/`,categoria);
   }
   // actualizarProducto(producto: any): Observable<any> {
   //   return this.http.put(`https://api-ecommerce-01.azurewebsites.net/api/products/`,producto);

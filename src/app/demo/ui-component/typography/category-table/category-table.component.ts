@@ -48,7 +48,7 @@ export class CategoryTableComponent {
   actualizarCategoria(categoria: any) {
     this.apiService.ServiceActualizarCategoria(categoria).subscribe({
       next: (response) => {
-        console.log('Producto actualizado con éxito', response);
+        console.log('Categoria actualizado con éxito', response);
         this.isModalOpentwo = false;
         // Aquí actualizas la lista de productos si es necesario
       },
