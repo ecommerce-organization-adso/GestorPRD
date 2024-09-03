@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApirestService } from 'src/app/servicios/apirest/apirest.service';
 import { ProductTableComponent } from 'src/app/demo/ui-component/typography/product-table/product-table.component';
+import { DomSanitizer } from '@angular/platform-browser'; // Para manejar la vista previa
+
+
 @Component({
   selector: 'app-card',
   standalone: true,
@@ -19,27 +22,102 @@ export class CardComponent {
     price: '',
     quantity: '',
     status: '',
-    // image: '',
+    image: '',
     category: '',
   };
+
+
+  ruta: string = ''; // Para almacenar la ruta de la imagen
+
   message: string;
-  constructor(private apiService: ApirestService) {}
+  selectedFile: File | null = null;
+  imagePreview: any = null;
+  rutaImagen: string = ''; // Para almacenar la ruta de la imagen
+
+
+  constructor(private apiService: ApirestService,private sanitizer: DomSanitizer) {}
+
+
+
+
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+
+    // Crear una vista previa de la imagen
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = this.sanitizer.bypassSecurityTrustUrl(reader.result as string);
+    };
+    reader.readAsDataURL(this.selectedFile);
+  }
+
 
   onSubmit() {
-    console.log(this.producto)
-    // Cuando el formulario se envía, el objeto producto contiene los datos del formulario
-    this.apiService.crearProducto(this.producto).subscribe(
-      response => {
-        this.message = ('Producto creado exitosamente');
+    if (this.selectedFile) {
+      const formData = new FormData();
 
-        // Puedes agregar lógica adicional aquí, como redirigir al usuario o mostrar un mensaje de éxito
-      },
-      error => {
 
-        console.error('Error al crear el producto', error);
-        // Maneja el error, por ejemplo, mostrando un mensaje de error al usuario
+      this.ruta = this.selectedFile.name;
+      this.ruta = this.selectedFile.name;
+      formData.append('image', this.selectedFile!, this.selectedFile!.name);
+
+       // Construir el JSON para enviar
+      const payload = {
+        ruta: '', // Si es necesario, asigna una ruta o URL de la imagen aquí
+        producto: {
+          // Otros campos del producto
+          image: this.imagePreview, // Añadir la imagen si tu API acepta base64, o manejar de otra manera
+        },
+      };
+
+      console.log("////////////////////////////////////////");
+      console.log(formData.name);
+      console.log("////////////////////////////////////////");
+
+
+      this.apiService.crearProducto(this.producto).subscribe(
+        response => {
+          this.message = ('Producto creado exitosamente');
+
+          // Puedes agregar lógica adicional aquí, como redirigir al usuario o mostrar un mensaje de éxito
+        },
+        error => {
+
+          console.error('Error al crear el producto', error);
+          // Maneja el error, por ejemplo, mostrando un mensaje de error al usuario
+        }
+      );
+
+      //////SUBE IMAGEN ///////////////////////////////////////////////
+      this.apiService.subirImagen(payload).subscribe(
+
+
+
+        response => {
+
+
+
+          // Suponiendo que el backend devuelve la URL de la imagen
+          this.rutaImagen = response.ruta;
+          console.log('Imagen subida exitosamente', response);
+
+
+
+          },
+          error => {
+            console.error('Error al subir la imagen', error);
+          }
+        );
+       //////FIN IMAGEN ///////////////////////////////////////////////
+
+
+
+
+
+      } else {
+        console.error('No se ha seleccionado ninguna imagen.');
       }
-    );
   }
 
   // public props

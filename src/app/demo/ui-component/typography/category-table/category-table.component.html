@@ -32,15 +32,17 @@
   <div class="modal-content">
     <span class="close" (click)="closeModal()">&times;</span>
     <h2>Editar Categoria</h2>
-    <form  (ngSubmit)="actualizarCategoria(selectedCategory)">         
+    <form (ngSubmit)="actualizarCategoria(selectedCategory)">
       <div class="form-group">
-        <label for="exampleInputName">Nombre del producto</label>
-        <input type="name"  [(ngModel)]="selectedCategory.category_name" name="category_name" class="form-control" id="category_name" placeholder="Ingrese e nombre del producto">
+        <label for="exampleInputName">Nombre de Categoria</label>
+        <input type="name" [(ngModel)]="selectedCategory.category_name" name="category_name" class="form-control"
+          id="category_name" placeholder="Ingrese e nombre Categoria">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
       </div>
       <div class="form-group">
         <label for="examplePrice">Descripción</label>
-        <input type="description"  [(ngModel)]="selectedCategory.description_category" name="description_category" class="form-control" id="description_category" placeholder="Precio">
+        <input type="description" [(ngModel)]="selectedCategory.description_category" name="description_category"
+          class="form-control" id="description_category" placeholder="Precio">
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
