@@ -14,29 +14,33 @@
   } -->
 
 <form (ngSubmit)="onSubmit()" #productForm="ngForm">
-  <!-- <div class="form-group">
+
+  <div class="form-group">
     <label for="categoria">Categoria</label>
-    <input class="form-control" type="text" id="categoria" name="categoria" required [(ngModel)]="producto.category_id">
-  </div> -->
+    <input class="form-control" type="text" id="categoria" name="categoria" required [(ngModel)]="producto.category">
+  </div>
 
   <div class="form-group">
     <label for="exampleInputName">Nombre del producto</label>
-    <input type="name"  [(ngModel)]="producto.name" name="name" class="form-control" id="name" placeholder="Ingrese e nombre del producto">
+    <input type="name" [(ngModel)]="producto.name" name="name" class="form-control" id="name"
+      placeholder="Ingrese e nombre del producto">
     <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
   </div>
   <div class="form-group">
     <label for="examplePrice">Precio</label>
-    <input type="price"  [(ngModel)]="producto.price" name="price" class="form-control" id="price" placeholder="Precio">
+    <input type="price" [(ngModel)]="producto.price" name="price" class="form-control" id="price" placeholder="Precio">
   </div>
 
   <div class="form-group">
     <label for="examplePrice">Descripción</label>
-    <input type="price"  [(ngModel)]="producto.description" name="description"  class="form-control" id="description" placeholder="Descripción">
+    <input type="price" [(ngModel)]="producto.description" name="description" class="form-control" id="description"
+      placeholder="Descripción">
   </div>
 
   <div class="form-group">
     <label for="examplePrice">Cantidad </label>
-    <input type="price"  [(ngModel)]="producto.quantity" name="quantity" class="form-control" id="quantity" placeholder="Cantidad">
+    <input type="price" [(ngModel)]="producto.quantity" name="quantity" class="form-control" id="quantity"
+      placeholder="Cantidad">
   </div>
 
 
@@ -51,7 +55,7 @@
 
   <div class="form-group">
     <label for="examplePrice">Estado </label>
-    <select name="status"  id="status" [(ngModel)]="producto.status">
+    <select name="status" id="status" [(ngModel)]="producto.status">
       <option value="Y">Y</option>
       <option value="N">N</option>
     </select>
@@ -65,8 +69,17 @@
     </select>
   </div>
 
+
+  <div class="form-group">
+    <label for="examplePrice">Imagen </label>
+    <input type="file" (change)="onFileSelected($event)" class="form-control" placeholder="Seleccione la imagen"
+      required>
+    <img *ngIf="imagePreview" [src]="imagePreview" alt="Vista previa" />
+
+  </div>
+
   <div class="form-footer">
-  <button class="btn btn-primary" type="submit">Crear Producto</button>
+    <button class="btn btn-primary" type="submit">Crear Producto</button>
   </div>
 </form>
 

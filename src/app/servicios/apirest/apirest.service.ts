@@ -36,6 +36,10 @@ export class ApirestService {
     return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/productos/', nuevoProducto);
   }
 
+  subirImagen(formData: FormData): Observable<any> {
+    return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/imagenes/', formData);
+  }
+
   // crearCategorias(nuevaCategoria: any): Observable<any> {
   //   return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/product_categories/', nuevaCategoria);
   // }
