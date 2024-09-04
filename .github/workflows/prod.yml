@@ -48,6 +48,6 @@ jobs:
             docker stop app-admin-angular-01 || true
             docker rm app-admin-angular-01 || true
             docker image prune -a -f
-            docker run -d --name app-admin-angular-01 -p 4200:4200 mlatino29/tienda-admin-angular-01:latest
+            docker run -d --name app-admin-angular-01 --restart unless-stopped -p 4200:4200 mlatino29/tienda-admin-angular-01:latest
           EOF
 
