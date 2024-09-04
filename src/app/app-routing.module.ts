@@ -16,7 +16,7 @@ const routes: Routes = [
 
       {
         path: 'dashboard/default',
-        loadComponent: () => import('./demo/default/dashboard/dashboard.component').then((c) => c.CardComponent),
+        loadComponent: () => import('./demo/default/dashboard/dashboard.component').then((c) => c.DefaultComponent),
         // canActivate: [AuthGuard], // Aplica el guard aquí
       },
       {
@@ -63,8 +63,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-
-
-
 
 }

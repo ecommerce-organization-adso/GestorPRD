@@ -54,7 +54,7 @@ export class ApirestService {
   // }
 
   eliminarCategoria(id: any): Observable<any> {
-    return this.http.delete(`http://127.0.0.1:8000/categorias/`,id);
+    return this.http.delete(`https://api-ecommerce-01.azurewebsites.net/api/categorias/${id}`);
   }
   // obtenerCategoria(): Observable<any> {
   //   return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/product_categories/');

@@ -34,17 +34,17 @@ export class CategoryTableComponent {
 
   selectedCategory: any;
   isModalOpentwo = false;
-  
+
  openModal(categoria: any) {
   this.selectedCategory = { ...categoria };
   this.isModalOpentwo = true;
   console.log('Modal abierto:', this.isModalOpentwo); // Debería mostrar "true"
 }
-  
+
   closeModal() {
     this.isModalOpentwo = false;
   }
-  
+
   actualizarCategoria(categoria: any) {
     this.apiService.ServiceActualizarCategoria(categoria).subscribe({
       next: (response) => {
