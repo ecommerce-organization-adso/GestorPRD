@@ -41,17 +41,17 @@ export class ProductTableComponent {
 
   selectedProduct: any;
   isModalOpen = false;
-  
+
  openModal(producto: any) {
   this.selectedProduct = { ...producto };
   this.isModalOpen = true;
   console.log('Modal abierto:', this.isModalOpen); // Debería mostrar "true"
 }
-  
+
   closeModal() {
     this.isModalOpen = false;
   }
-  
+
   actualizarProducto(producto: any) {
     this.apiService.ServiceActualizarProducto(producto).subscribe({
       next: (response) => {
@@ -64,7 +64,7 @@ export class ProductTableComponent {
       }
     });
   }
-  
+
   eliminarProducto(productoId: number): void {
     if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
       this.apiService.eliminarProducto(productoId).subscribe(

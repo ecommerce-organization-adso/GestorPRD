@@ -36,6 +36,10 @@ export class ApirestService {
     return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/productos/', nuevoProducto);
   }
 
+  subirImagen(formData: FormData): Observable<any> {
+    return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/imagenes/', formData);
+  }
+
   // crearCategorias(nuevaCategoria: any): Observable<any> {
   //   return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/product_categories/', nuevaCategoria);
   // }
@@ -50,7 +54,7 @@ export class ApirestService {
   // }
 
   eliminarCategoria(id: any): Observable<any> {
-    return this.http.delete(`http://127.0.0.1:8000/categorias/`,id);
+    return this.http.delete(`https://api-ecommerce-01.azurewebsites.net/api/categorias/${id}`);
   }
   // obtenerCategoria(): Observable<any> {
   //   return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/product_categories/');
@@ -65,7 +69,7 @@ export class ApirestService {
   }
 
   ServiceActualizarCategoria(categoria: any): Observable<any> {
-    return this.http.put(`https://api-ecommerce-01.azurewebsites.net/api/productos/${categoria.id}/`,categoria);
+    return this.http.put(`https://api-ecommerce-01.azurewebsites.net/api/categorias/${categoria.id}/`,categoria);
   }
   // actualizarProducto(producto: any): Observable<any> {
   //   return this.http.put(`https://api-ecommerce-01.azurewebsites.net/api/products/`,producto);

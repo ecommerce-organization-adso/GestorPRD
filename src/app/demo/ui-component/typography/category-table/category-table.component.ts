@@ -34,21 +34,21 @@ export class CategoryTableComponent {
 
   selectedCategory: any;
   isModalOpentwo = false;
-  
+
  openModal(categoria: any) {
   this.selectedCategory = { ...categoria };
   this.isModalOpentwo = true;
   console.log('Modal abierto:', this.isModalOpentwo); // Debería mostrar "true"
 }
-  
+
   closeModal() {
     this.isModalOpentwo = false;
   }
-  
+
   actualizarCategoria(categoria: any) {
     this.apiService.ServiceActualizarCategoria(categoria).subscribe({
       next: (response) => {
-        console.log('Producto actualizado con éxito', response);
+        console.log('Categoria actualizado con éxito', response);
         this.isModalOpentwo = false;
         // Aquí actualizas la lista de productos si es necesario
       },
