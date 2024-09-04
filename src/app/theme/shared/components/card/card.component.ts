@@ -54,12 +54,12 @@ export class CardComponent {
 
 
   onSubmit() {
-    if (this.selectedFile) {
-      const formData = new FormData();
+    // if (this.selectedFile) {
+      // const formData = new FormData();
 
 
-      this.ruta = this.selectedFile.name;
-      this.ruta = this.selectedFile.name;
+      // this.ruta = this.selectedFile.name;
+      // this.ruta = this.selectedFile.name;
       // formData.append('image', this.selectedFile!, this.selectedFile!.name);
 
        // Construir el JSON para enviar
@@ -115,9 +115,9 @@ export class CardComponent {
 
 
 
-      } else {
-        console.error('No se ha seleccionado ninguna imagen.');
-      }
+      // } else {
+      //   console.error('No se ha seleccionado ninguna imagen.');
+      // }
   }
 
   // public props
