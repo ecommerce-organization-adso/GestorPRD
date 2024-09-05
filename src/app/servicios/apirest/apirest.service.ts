@@ -1,9 +1,8 @@
 // apirest.service.ts
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -36,8 +35,12 @@ export class ApirestService {
     return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/productos/', nuevoProducto);
   }
 
-  subirImagen(formData: FormData): Observable<any> {
-    return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/imagenes/', formData);
+  subirImagen(dataToSend: { ruta: string, producto: any }): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+      // Agrega otros encabezados si es necesario
+    });
+    return this.http.post('https://api-ecommerce-01.azurewebsites.net/api/imagenes/', dataToSend, { headers });
   }
 
   // crearCategorias(nuevaCategoria: any): Observable<any> {

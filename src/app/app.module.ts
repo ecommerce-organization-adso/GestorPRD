@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router'; // Asegúrate de importar esto
@@ -17,7 +17,7 @@ import { ApirestService } from './servicios/apirest/apirest.service';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [RouterModule,FormsModule,HttpClientModule,BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule,CommonModule],
+  imports: [RouterModule,FormsModule,HttpClientModule,BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule,CommonModule,ReactiveFormsModule],
   providers: [ApirestService],
   bootstrap: [AppComponent]
 })
