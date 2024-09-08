@@ -1,12 +1,9 @@
 // angular import
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
 // project import
 import { SharedModule } from 'src/app/theme/shared/shared.module';
-
 // third party
-
 // icon
 import { IconService } from '@ant-design/icons-angular';
 import {
@@ -28,6 +25,14 @@ import {
   ArrowRightOutline,
   GithubOutline
 } from '@ant-design/icons-angular/icons';
+import { AuthService } from 'src/app/auth.service';
+
+
+
+
+
+
+
 
 @Component({
   selector: 'app-nav-right',
@@ -39,10 +44,13 @@ import {
 export class NavRightComponent {
   @Input() styleSelectorToggle!: boolean;
   @Output() Customize = new EventEmitter();
+  @Output() logout = new EventEmitter<void>(); // Evento que se emitirá cuando el usuario haga
+
+
   windowWidth: number;
   screenFull: boolean = true;
 
-  constructor(private iconService: IconService) {
+  constructor(private authService: AuthService,private iconService: IconService) {
     this.windowWidth = window.innerWidth;
     this.iconService.addIcon(
       ...[
@@ -108,4 +116,17 @@ export class NavRightComponent {
       title: 'History'
     }
   ];
+
+
+
+
+   // Lógica para cuando el usuario hace logout
+   EmitLogout() {
+    this.authService.logout(); // Aquí llamamos al método logout del servicio
+    console.log('Usuario deslogueado desde NavRight');
+  }
+
+
+
+
 }

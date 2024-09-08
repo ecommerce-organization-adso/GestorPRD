@@ -17,12 +17,12 @@ const routes: Routes = [
       {
         path: 'dashboard/default',
         loadComponent: () => import('./demo/default/dashboard/dashboard.component').then((c) => c.DefaultComponent),
-        // canActivate: [AuthGuard], // Aplica el guard aquí
+        canActivate: [AuthGuard], // Aplica el guard aquí
       },
       {
         path: 'typography',
         loadComponent: () => import('./demo/ui-component/typography/typography.component'),
-        // canActivate: [AuthGuard], // Aplica el guard aquí
+        canActivate: [AuthGuard], // Aplica el guard aquí
 
       },
       {

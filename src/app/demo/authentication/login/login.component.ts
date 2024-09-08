@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter } from '@angular/core';
 import { Router,RouterModule  } from '@angular/router';
 import { ApirestService } from '../../../servicios/apirest/apirest.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; // Importa CommonModule
 import { AuthService } from 'src/app/auth.service';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -43,6 +42,9 @@ export default class LoginComponent implements OnInit {
 
   constructor(private apirestService: ApirestService, private router: Router,private authService: AuthService) {}
 
+
+
+
   ngOnInit(): void {
     console.log('Componente de login inicializado');
   }
@@ -63,4 +65,8 @@ export default class LoginComponent implements OnInit {
     console.log('Remember Me:', this.rememberMe);
     this.handleClick();
   }
+
+
+
+
 }
