@@ -1,22 +1,31 @@
-<div class="container">
-  <h2>Register</h2>
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" id="username" formControlName="username" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" formControlName="email" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" formControlName="password" class="form-control" required>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
-  </form>
+<div class="auth-main">
+  <div class="auth-wrapper v3">
+    <div class="auth-form">
+      <div class="auth-header">
+        <a href="javascript:"><img src="assets/images/logo-dark.svg" alt="logo" /></a>
+      </div>
+      <div class="card my-5">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-end mb-3">
+            <div class="container">
+              <h2>Regístrate</h2>
+              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="username">Usuario</label>
+                  <input type="text" id="username" formControlName="username" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Correo eléctronico</label>
+                  <input type="email" id="email" formControlName="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="password">Contraseña</label>
+                  <input type="password" id="password" formControlName="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Registrarse</button>
+              </form>
 
-  <!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+              <!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="username">Phone</label>
       <input type="text" id="username" formControlName="phone_number" class="form-control" required>
@@ -32,11 +41,6 @@
     <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
   </form> -->
 
-  <div class="social-login">
-    <p>Or sign up with</p>
-    <div *ngFor="let option of SignUpOptions" class="social-option">
-      <img [src]="option.image" [alt]="option.name" class="social-icon">
-      <span>{{ option.name }}</span>
-    </div>
-  </div>
-</div>
+
+            </div>
+          </div>
