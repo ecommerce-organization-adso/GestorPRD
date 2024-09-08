@@ -24,6 +24,7 @@ export class ApirestService {
   //   return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/products/');
   // }
   getProductos(): Observable<any> {
+    
     return this.http.get('https://api-ecommerce-01.azurewebsites.net/api/productos/');
   }
 
