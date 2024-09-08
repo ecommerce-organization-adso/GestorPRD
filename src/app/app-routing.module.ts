@@ -39,6 +39,11 @@ const routes: Routes = [
       {
         path: 'sample-page',
         loadComponent: () => import('./demo/other/sample-page/sample-page.component')
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard/default', // Nueva ruta por defecto
+        pathMatch: 'full'
       }
     ]
   },
@@ -55,6 +60,10 @@ const routes: Routes = [
         loadComponent: () => import('./demo/authentication/register/register.component')
       }
     ]
+  },
+  {
+    path: '**',
+    redirectTo: './demo/authentication/login/login.component' // Redirige a una página de error o a una ruta predeterminada
   }
 ];
 
