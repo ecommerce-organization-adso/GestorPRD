@@ -1,46 +1,28 @@
-<div class="auth-main">
-  <div class="auth-wrapper v3">
-    <div class="auth-form">
-      <div class="auth-header">
-        <a href="javascript:"><img src="assets/images/logo-dark.svg" alt="logo" /></a>
-      </div>
-      <div class="card my-5">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-end mb-3">
-            <div class="container">
-              <h2>Regístrate</h2>
-              <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                  <label for="username">Usuario</label>
-                  <input type="text" id="username" formControlName="username" class="form-control" required>
-                </div>
-                <div class="form-group">
-                  <label for="email">Correo eléctronico</label>
-                  <input type="email" id="email" formControlName="email" class="form-control" required>
-                </div>
-                <div class="form-group">
-                  <label for="password">Contraseña</label>
-                  <input type="password" id="password" formControlName="password" class="form-control" required>
-                </div>
-                <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Registrarse</button>
-              </form>
-
-              <!-- <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="username">Phone</label>
-      <input type="text" id="username" formControlName="phone_number" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" formControlName="email_address" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" formControlName="password" class="form-control" required>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
-  </form> -->
-
-
+<div class="auth-wrapper v3">
+  <div class="auth-header">
+    <a href="javascript:"><img src="assets/images/logo-dark.svg" alt="logo" /></a>
+  </div>
+  <div class="card my-5 container width">
+    <div class=" card-body">
+      <div class="d-flex justify-content-between align-items-end mb-3">
+        <div class="container">
+          <h2>Regístrate</h2>
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="username">Usuario</label>
+              <input type="text" id="username" formControlName="username" class="form-control" required>
             </div>
-          </div>
+            <div class="form-group">
+              <label for="email">Correo eléctronico</label>
+              <input type="email" id="email" formControlName="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Contraseña</label>
+              <input type="password" id="password" formControlName="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Registrarse</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
