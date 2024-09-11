@@ -52,7 +52,9 @@ export class CardComponent {
           if (this.selectedFile) {
             const formData = new FormData();
             formData.append('file', this.selectedFile, this.selectedFile.name);
-            this.http.post('http://127.0.0.1/TiendaVirtual/CargarImagen.php', formData)
+            // this.http.post('http://127.0.0.1/TiendaVirtual/CargarImagen.php', formData)
+            this.http.post('http://20.84.91.157:9171/CargarImagen.php', formData)
+           
             .subscribe({
               next: (response: any) => { // Asegúrate de que 'response' se maneje como un objeto JSON
                 console.log('File uploaded successfully:', response);
