@@ -53,7 +53,7 @@ export class CardComponent {
             const formData = new FormData();
             formData.append('file', this.selectedFile, this.selectedFile.name);
             const host = `${window.location.protocol}//${window.location.hostname}`;
-            const apiUrl = `${host}/TiendaVirtual/CargarImagen.php`;
+            const apiUrl = `${host}/CargarImagen.php`;
             this.http.post(apiUrl, formData)
 
 
