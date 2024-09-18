@@ -13,12 +13,29 @@ import { FormsModule } from '@angular/forms';
 export class ProductTableComponent {
 
   productos: any[] = [];
+  categorias: any[] = [];  // Para almacenar las categorías obtenidas de la API
 
   constructor(private apiService: ApirestService) {}
 
   ngOnInit(): void {
     this.obtenerProductos();
+    this.obtenerCategorias();
+
   }
+
+
+
+  obtenerCategorias() {
+    this.apiService.obtenerCategoria().subscribe(
+      (response) => {
+        this.categorias = response;  // Asignar la respuesta a la variable `categorias`
+      },
+      (error) => {
+        console.error('Error al obtener las categorías', error);
+      }
+    );
+  }
+
 
   obtenerProductos() {
     this.apiService.getProductos().subscribe(

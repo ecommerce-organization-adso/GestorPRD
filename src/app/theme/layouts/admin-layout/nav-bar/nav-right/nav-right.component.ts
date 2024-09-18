@@ -84,37 +84,39 @@ export class NavRightComponent {
       icon: 'user',
       title: 'Ver Perfil'
     },
-    {
-      icon: 'profile',
-      title: 'Perfil Público'
-    },
-    {
-      icon: 'wallet',
-      title: 'Facturación'
-    }
+    // {
+    //   icon: 'profile',
+    //   title: 'Perfil Público'
+    // },
+    // {
+    //   icon: 'wallet',
+    //   title: 'Facturación'
+    // }
   ];
 
   setting = [
-    {
-      icon: 'question-circle',
-      title: 'Support'
-    },
+    // {
+    //   icon: 'question-circle',
+    //   title: 'Support'
+    // },
     {
       icon: 'user',
-      title: 'Account Settings'
+      title: 'Account Settings',
+      url: '/register',
+
     },
-    {
-      icon: 'lock',
-      title: 'Privacy Center'
-    },
-    {
-      icon: 'comment',
-      title: 'Feedback'
-    },
-    {
-      icon: 'unordered-list',
-      title: 'History'
-    }
+    // {
+    //   icon: 'lock',
+    //   title: 'Privacy Center'
+    // },
+    // {
+    //   icon: 'comment',
+    //   title: 'Feedback'
+    // },
+    // {
+    //   icon: 'unordered-list',
+    //   title: 'History'
+    // }
   ];
 
 

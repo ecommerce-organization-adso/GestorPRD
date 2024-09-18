@@ -76,9 +76,9 @@
 
       <div class="form-group">
         <label for="examplePrice">Categoria </label>
-        <select name="category" [(ngModel)]="selectedProduct.category">
-          <option value="39">39</option>
-          <option value="38">38</option>
+  
+        <select name="category" [(ngModel)]="selectedProduct.category" class="form-control">
+          <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.category_name }}</option>
         </select>
       </div>
 
