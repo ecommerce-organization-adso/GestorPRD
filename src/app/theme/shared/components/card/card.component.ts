@@ -33,6 +33,7 @@ export class CardComponent {
   imagePreview: any = null;
   rutaImagen: string = ''; // Para almacenar la ruta de la imagen
 
+  categorias: any[] = [];  // Para almacenar las categorías obtenidas de la API
 
   constructor(private apiService: ApirestService,private sanitizer: DomSanitizer,private http: HttpClient) {}
 
@@ -40,6 +41,24 @@ export class CardComponent {
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
+
+
+  ngOnInit() {
+    this.obtenerCategorias();
+  }
+
+  obtenerCategorias() {
+    this.apiService.obtenerCategoria().subscribe(
+      (response) => {
+        this.categorias = response;  // Asignar la respuesta a la variable `categorias`
+      },
+      (error) => {
+        console.error('Error al obtener las categorías', error);
+      }
+    );
+  }
+
+
   onSubmit() {
 
 
