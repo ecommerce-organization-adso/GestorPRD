@@ -76,14 +76,14 @@ export class NavRightComponent {
   }
 
   profile = [
-    {
-      icon: 'edit',
-      title: 'Editar Perfil'
-    },
-    {
-      icon: 'user',
-      title: 'Ver Perfil'
-    },
+    // {
+    //   icon: 'edit',
+    //   title: 'Editar Perfil'
+    // },
+    // {
+    //   icon: 'user',
+    //   title: 'Ver Perfil'
+    // },
     // {
     //   icon: 'profile',
     //   title: 'Perfil Público'
